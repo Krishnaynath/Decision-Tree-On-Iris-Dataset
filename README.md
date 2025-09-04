@@ -4,11 +4,13 @@ Assignment 3 for machine learning course includes decision tree on iris dataset 
 
 📦 Imports Explained :
 [
+
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 import pandas as pd
+
 ]
 
 matplotlib.pyplot as plt → Used for plotting graphs and visualizations.
@@ -25,9 +27,11 @@ pandas as pd → Handles dataset in a tabular (DataFrame) format.
 
 📊 Loading the Dataset:
 [
+
 iris = load_iris()
 X = pd.DataFrame(iris.data, columns=iris.feature_names)
 y = iris.target
+
 ]
 
 iris.data → Feature values (flower measurements).
@@ -36,11 +40,13 @@ iris.feature_names → Column names (sepal length, sepal width, petal length, pe
 
 iris.target → Encoded labels: 0 = setosa, 1 = versicolor, 2 = virginica.
 
- ## X contains the input features, and y contains the output labels.
+ ### X contains the input features, and y contains the output labels.
 
 Splitting Data:
 [
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
 ]
 
 70% training data (105 samples).
@@ -51,8 +57,10 @@ random_state=42 ensures reproducibility.
 
 🌳 Building the Decision Tree:
 [
+
 clf = DecisionTreeClassifier(criterion="entropy", random_state=42)
 clf.fit(X_train, y_train)
+
 ]
 
 criterion="entropy" → Uses Information Gain (entropy) for splitting.
@@ -63,10 +71,12 @@ random_state=42 → Fixes randomness.
 
 🖼️ Visualizing the Decision Tree:
 [
+
 plt.figure(figsize=(12,8))
 plot_tree(clf, feature_names=iris.feature_names, class_names=iris.target_names, filled=True)
 plt.title("Decision Tree on Iris Dataset")
 plt.show()
+
 ]
 
 Draws a decision tree with features and class labels.
@@ -75,8 +85,10 @@ filled=True colors the nodes by predicted class.
 
 📈 Feature Importance (Information Gain):
 [
+
 importances = clf.feature_importances_
 features = iris.feature_names
+
 ]
 
 clf.feature_importances_ → Importance of each feature based on information gain.
@@ -91,12 +103,14 @@ Example (Iris dataset):
 📊 Plotting Feature Importance:
 
 [
+
 plt.figure(figsize=(8,5))
 plt.bar(features, importances, color='skyblue')
 plt.xlabel("Features")
 plt.ylabel("Information Gain (Feature Importance)")
 plt.title("Information Gain of Features in Iris Dataset")
 plt.show()
+
 ]
 
 Creates a bar chart of feature importance.
